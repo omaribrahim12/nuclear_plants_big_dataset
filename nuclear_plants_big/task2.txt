@@ -1,0 +1,228 @@
+#task 2
+
+
+#the power range sensors staticstics 
+
+
+#The maximum values power range sensors (Normal)
+# max_pr_1 = df.where(df.Status == "Normal").select(max("Power_range_sensor_1")).withColumnRenamed("max(Power_range_sensor_1)","max of power range 1")
+# max_pr_2 = df.where(df.Status == "Normal").select(max("Power_range_sensor_2")).withColumnRenamed("max(Power_range_sensor_2)","max of power range 1")
+# max_pr_3 = df.where(df.Status == "Normal").select(max("Power_range_sensor_3 ")).withColumnRenamed("max(Power_range_sensor_3 )","max of power range 1")
+# max_pr_4 = df.where(df.Status == "Normal").select(max("Power_range_sensor_4")).withColumnRenamed("max(Power_range_sensor_4)","max of power range 1")
+max_pr_1 = df.groupBy("status").max("Power_range_sensor_1").withColumnRenamed("max(Power_range_sensor_1)","max of power range 1")
+max_pr_2 = df.groupBy("status").max("Power_range_sensor_2").withColumnRenamed("max(Power_range_sensor_2)","max of power range 2")
+max_pr_3 = df.groupBy("status").max("Power_range_sensor_3 ").withColumnRenamed("max(Power_range_sensor_3 )","max of power range 3")
+max_pr_4 = df.groupBy("status").max("Power_range_sensor_4").withColumnRenamed("max(Power_range_sensor_4)","max of power range 3")
+
+max_pr_1.show()
+max_pr_2.show()
+max_pr_3.show()
+max_pr_4.show()
+
+# max_pr_2.show()
+# max_pr_3.show()
+# max_pr_4.show()
+# max_pr_2 = df.where(df.Status == "Normal").select(max("Power_range_sensor_2")).withColumnRenamed("max(Power_range_sensor_2)","max of power range 2")
+# max_pr_3 = df.where(df.Status == "Normal").select(max("Power_range_sensor_3 ")).withColumnRenamed("max(Power_range_sensor_3 )","max of power range 3")
+# max_pr_4 = df.where(df.Status == "Normal").select(max("Power_range_sensor_4")).withColumnRenamed("max(Power_range_sensor_4)","max of power range 4")
+# print("power range sensors maximum values (Normal)")
+# max_pr_1.join(max_pr_2).join(max_pr_3).join(max_pr_4).show(vertical = True)
+
+
+#the minimum values of power range sensors (Normal)
+# min_pr_1 = df.where(df.Status == "Normal").select(min("Power_range_sensor_1")).withColumnRenamed("min(Power_range_sensor_1)","minimum of power range 1")
+# min_pr_2 = df.where(df.Status == "Normal").select(min("Power_range_sensor_2")).withColumnRenamed("min(Power_range_sensor_2)","minimum of power range 2")
+# min_pr_3 = df.where(df.Status == "Normal").select(min("Power_range_sensor_3 ")).withColumnRenamed("min(Power_range_sensor_3 )","minimum of power range 3")
+# min_pr_4 = df.where(df.Status == "Normal").select(min("Power_range_sensor_4")).withColumnRenamed("min(Power_range_sensor_4)","minimum of power range 4")
+# print("power range sensors minimum values (Normal)")
+# min_pr_1.join(min_pr_2).join(min_pr_3).join(min_pr_4).show(vertical = True)
+
+#The mean of power range sensors  (Normal)
+# average_pr_1 = df.filter(df.Status == "Normal").select(mean("Power_range_sensor_1")).withColumnRenamed("avg(Power_range_sensor_1)","average power range sensor 1")
+# average_pr_2 = df.filter(df.Status == "Normal").select(mean("Power_range_sensor_2")).withColumnRenamed("avg(Power_range_sensor_2)","average power range sensor 2")
+# average_pr_3 = df.filter(df.Status == "Normal").select(mean("Power_range_sensor_3 ")).withColumnRenamed("avg(Power_range_sensor_3 )","average power range sensor 3")
+# average_pr_4 = df.filter(df.Status == "Normal").select(mean("Power_range_sensor_4")).withColumnRenamed("avg(Power_range_sensor_4)","average power range sensor 4")
+# print("The mean of power range sensors (Normal status)")
+# average_pr_1.join(average_pr_2).join(average_pr_3).join(average_pr_4).show(vertical = True)
+
+#the medians of power range sensors 
+# median1 = df.groupBy("status").agg(func.percentile_approx("Power_range_sensor_1",0.5).alias("median of power range 1"))
+# median2 = df.groupBy("status").agg(func.percentile_approx("Power_range_sensor_2",0.5).alias("median of power range 2"))
+# median3 = df.groupBy("status").agg(func.percentile_approx("Power_range_sensor_3 ",0.5).alias("median of power range 3"))
+# median4 = df.groupBy("status").agg(func.percentile_approx("Power_range_sensor_4",0.5).alias("median of power range 4"))
+# median5 = df.groupBy("status").max("Power_range_sensor_1").withColumnRenamed("max(Power_range_sensor_1)","max of power range 1")
+# print("The median of power range sensors (Normal and Abnormal status)")
+
+# median1.show()
+# median2.show()
+# median3.show()
+# median4.show()
+# median5.show()
+
+
+print("###########################################################")
+print(" ")
+
+
+#The maximum values power range sensors (Abnormal)
+max_pr_12 = df.where(df.Status == "Abnormal").select(max("Power_range_sensor_1")).withColumnRenamed("max(Power_range_sensor_1)","max of power range 1")
+# max_pr_22 = df.where(df.Status == "Abnormal").select(max("Power_range_sensor_2")).withColumnRenamed("max(Power_range_sensor_2)","max of power range 2")
+# max_pr_32 = df.where(df.Status == "Abnormal").select(max("Power_range_sensor_3 ")).withColumnRenamed("max(Power_range_sensor_3 )","max of power range 3")
+# max_pr_42 = df.where(df.Status == "Abnormal").select(max("Power_range_sensor_4")).withColumnRenamed("max(Power_range_sensor_4)","max of power range 4")
+# print("power range sensors maximum values (Abnormal)")
+# max_pr_12.join(max_pr_22).join(max_pr_32).join(max_pr_42).show(vertical = True)
+# max_pr_12.show()
+
+
+#the minimum values of power range sensors (Abnormal)
+# min_pr_12 = df.where(df.Status == "Abnormal").select(min("Power_range_sensor_1")).withColumnRenamed("min(Power_range_sensor_1)","minimum of power range 1")
+# min_pr_22 = df.where(df.Status == "Abnormal").select(min("Power_range_sensor_2")).withColumnRenamed("min(Power_range_sensor_2)","minimum of power range 2")
+# min_pr_32 = df.where(df.Status == "Abnormal").select(min("Power_range_sensor_3 ")).withColumnRenamed("min(Power_range_sensor_3 )","minimum of power range 3")
+# min_pr_42 = df.where(df.Status == "Abnormal").select(min("Power_range_sensor_4")).withColumnRenamed("min(Power_range_sensor_4)","minimum of power range 4")
+# print("power range sensors minimum values (Abnormal)")
+# min_pr_12.join(min_pr_22).join(min_pr_32).join(min_pr_42).show(vertical = True)
+
+
+#the mean values of power range sensors (Abnormal)
+# average_pr_12 = df.filter(df.Status == "Abnormal").select(mean("Power_range_sensor_1")).withColumnRenamed("avg(Power_range_sensor_1)","average power range sensor 1")
+# average_pr_22 = df.filter(df.Status == "Abnormal").select(mean("Power_range_sensor_2")).withColumnRenamed("avg(Power_range_sensor_2)","average power range sensor 2")
+# average_pr_32 = df.filter(df.Status == "Abnormal").select(mean("Power_range_sensor_3 ")).withColumnRenamed("avg(Power_range_sensor_3 )","average power range sensor 3")
+# average_pr_42 = df.filter(df.Status == "Abnormal").select(mean("Power_range_sensor_4")).withColumnRenamed("avg(Power_range_sensor_4)","average power range sensor 4")
+
+# print("The mean of power range sensors (Abnormal)")
+# average_pr_12.join(average_pr_22).join(average_pr_32).join(average_pr_42).show(vertical = True)
+
+print("###########################################################")
+print(" ")
+
+
+#the pressure sensors staticstics 
+
+
+#The maximum values pressure sensors  (Normal)
+# max_ps_1 = df.where(df.Status == "Normal").select(max("Pressure _sensor_1")).withColumnRenamed("max(Pressure _sensor_1)","max of pressure sensor 1")
+# max_ps_2 = df.where(df.Status == "Normal").select(max("Pressure _sensor_2")).withColumnRenamed("max(Pressure _sensor_2)","max of pressure sensor 2")
+# max_ps_3 = df.where(df.Status == "Normal").select(max("Pressure _sensor_3")).withColumnRenamed("max(Pressure _sensor_3)","max of pressure sensor 3")
+# max_ps_4 = df.where(df.Status == "Normal").select(max("Pressure _sensor_4")).withColumnRenamed("max(Pressure _sensor_4)","max of pressure sensor 4")
+
+# print("pressure sensors maximum values (Normal)")
+# max_ps_1.join(max_ps_2).join(max_ps_3).join(max_ps_4).show(vertical = True)
+
+
+# #the minimum values of pressure sensors (Normal)
+# min_ps_1 = df.where(df.Status == "Normal").select(min("Pressure _sensor_1")).withColumnRenamed("min(Pressure _sensor_1)","minimum of power range 1")
+# min_ps_2 = df.where(df.Status == "Normal").select(min("Pressure _sensor_2")).withColumnRenamed("min(Pressure _sensor_2)","minimum of power range 2")
+# min_ps_3 = df.where(df.Status == "Normal").select(min("Pressure _sensor_3")).withColumnRenamed("min(Pressure _sensor_3)","minimum of power range 3")
+# min_ps_4 = df.where(df.Status == "Normal").select(min("Pressure _sensor_4")).withColumnRenamed("min(Pressure _sensor_4)","minimum of power range 4")
+# print("pressure sensors minimum values (Normal)")
+# min_ps_1.join(min_ps_2).join(min_ps_3).join(min_ps_4).show(vertical = True)
+
+# #The mean of pressure sensors  (Normal)
+# average_ps_1 = df.filter(df.Status == "Normal").select(mean("Pressure _sensor_1")).withColumnRenamed("avg(Pressure _sensor_1)","average pressure sensor 1")
+# average_ps_2 = df.filter(df.Status == "Normal").select(mean("Pressure _sensor_2")).withColumnRenamed("avg(Pressure _sensor_2)","average pressure sensor 2")
+# average_ps_3 = df.filter(df.Status == "Normal").select(mean("Pressure _sensor_3")).withColumnRenamed("avg(Pressure _sensor_3)","average pressure sensor 3")
+# average_ps_4 = df.filter(df.Status == "Normal").select(mean("Pressure _sensor_4")).withColumnRenamed("avg(Pressure _sensor_4)","average pressure sensor 4")
+# print("The mean of pressur sensors (Normal)")
+# average_ps_1.join(average_ps_2).join(average_ps_3).join(average_ps_4).show(vertical = True)
+
+
+
+
+# print("###########################################################")
+# print(" ")
+
+# #The maximum values pressure sensors  (Abnormal)
+# max_ps_12 = df.where(df.Status == "Abnormal").select(max("Pressure _sensor_1")).withColumnRenamed("max(Pressure _sensor_1)","max of pressure sensor 1")
+# max_ps_22 = df.where(df.Status == "Abnormal").select(max("Pressure _sensor_2")).withColumnRenamed("max(Pressure _sensor_2)","max of pressure sensor 2")
+# max_ps_32 = df.where(df.Status == "Abnormal").select(max("Pressure _sensor_3")).withColumnRenamed("max(Pressure _sensor_3)","max of pressure sensor 3")
+# max_ps_42 = df.where(df.Status == "Abnormal").select(max("Pressure _sensor_4")).withColumnRenamed("max(Pressure _sensor_4)","max of pressure sensor 4")
+
+# print("pressure sensors maximum values (Abnormal)")
+# max_ps_12.join(max_ps_22).join(max_ps_32).join(max_ps_42).show(vertical = True)
+
+
+# #the minimum values of pressure sensors (Abnormal)
+# min_ps_12 = df.where(df.Status == "Abnormal").select(min("Pressure _sensor_1")).withColumnRenamed("min(Pressure _sensor_1)","minimum of power range 1")
+# min_ps_22 = df.where(df.Status == "Abnormal").select(min("Pressure _sensor_2")).withColumnRenamed("min(Pressure _sensor_2)","minimum of power range 2")
+# min_ps_32 = df.where(df.Status == "Abnormal").select(min("Pressure _sensor_3")).withColumnRenamed("min(Pressure _sensor_3)","minimum of power range 3")
+# min_ps_42 = df.where(df.Status == "Abnormal").select(min("Pressure _sensor_4")).withColumnRenamed("min(Pressure _sensor_4)","minimum of power range 4")
+# print("pressure sensors minimum values (Abnormal)")
+# min_ps_12.join(min_ps_22).join(min_ps_32).join(min_ps_42).show(vertical = True)
+
+
+
+# #The mean of pressure sensors  (Abnormal)
+# average_ps_12 = df.filter(df.Status == "Abnormal").select(mean("Pressure _sensor_1")).withColumnRenamed("avg(Pressure _sensor_1)","average pressure sensor 1")
+# average_ps_22 = df.filter(df.Status == "Abnormal").select(mean("Pressure _sensor_2")).withColumnRenamed("avg(Pressure _sensor_2)","average pressure sensor 2")
+# average_ps_32 = df.filter(df.Status == "Abnormal").select(mean("Pressure _sensor_3")).withColumnRenamed("avg(Pressure _sensor_3)","average pressure sensor 3")
+# average_ps_42 = df.filter(df.Status == "Abnormal").select(mean("Pressure _sensor_4")).withColumnRenamed("avg(Pressure _sensor_4)","average pressure sensor 4")
+# print("The mean of pressure sensors (Abnormal)")
+# average_ps_12.join(average_ps_22).join(average_ps_32).join(average_ps_42).show(vertical = True)
+
+
+
+#the vibration sensors staticstics  (Normal)
+
+
+# max_vs_1 = df.where(df.Status == "Normal").select(max("Vibration_sensor_1")).withColumnRenamed("max(Vibration_sensor_1)","max of Vibration sensor 1")
+# max_vs_2 = df.where(df.Status == "Normal").select(max("Vibration_sensor_2")).withColumnRenamed("max(Vibration_sensor_2)","max of Vibration sensor 2")
+# max_vs_3 = df.where(df.Status == "Normal").select(max("Vibration_sensor_3")).withColumnRenamed("max(Vibration_sensor_3)","max of Vibration sensor 3")
+# max_vs_4 = df.where(df.Status == "Normal").select(max("Vibration_sensor_4")).withColumnRenamed("max(Vibration_sensor_4)","max of Vibration sensor 4")
+
+# print("Vibration sensors maximum values (Normal)")
+# max_vs_1.join(max_vs_2).join(max_vs_3).join(max_vs_4).show(vertical = True)
+
+
+# #the minimum values of vibration sensors (Normal)
+# min_vs_1 = df.where(df.Status == "Normal").select(min("Vibration_sensor_1")).withColumnRenamed("min(Vibration_sensor_1)","minimum of Vibration range 1")
+# min_vs_2 = df.where(df.Status == "Normal").select(min("Vibration_sensor_2")).withColumnRenamed("min(Vibration_sensor_2)","minimum of Vibration range 2")
+# min_vs_3 = df.where(df.Status == "Normal").select(min("Vibration_sensor_3")).withColumnRenamed("min(Vibration_sensor_3)","minimum of Vibration range 3")
+# min_vs_4 = df.where(df.Status == "Normal").select(min("Vibration_sensor_4")).withColumnRenamed("min(Vibration_sensor_4)","minimum of Vibration range 4")
+# print("Vibration sensors minimum values (Normal)")
+# min_vs_1.join(min_vs_2).join(min_vs_3).join(min_vs_4).show(vertical = True)
+
+# #The mean of vibration sensors  (Normal)
+# average_vs_1 = df.filter(df.Status == "Normal").select(mean("Vibration_sensor_1")).withColumnRenamed("avg(Vibration_sensor_1)","average Vibration sensor 1")
+# average_vs_2 = df.filter(df.Status == "Normal").select(mean("Vibration_sensor_2")).withColumnRenamed("avg(Vibration_sensor_2)","average Vibration sensor 2")
+# average_vs_3 = df.filter(df.Status == "Normal").select(mean("Vibration_sensor_3")).withColumnRenamed("avg(Vibration_sensor_3)","average Vibration sensor 3")
+# average_vs_4 = df.filter(df.Status == "Normal").select(mean("Vibration_sensor_4")).withColumnRenamed("avg(Vibration_sensor_4)","average Vibration sensor 4")
+# print("The mean of vibration sensors (Normal)")
+# average_vs_1.join(average_vs_2).join(average_vs_3).join(average_vs_4).show(vertical = True)
+
+
+
+
+# #the vibration sensors staticstics  (Abnormal)
+
+
+# max_vs_12 = df.where(df.Status == "Abnormal").select(max("Vibration_sensor_1")).withColumnRenamed("max(Vibration_sensor_1)","max of Vibration sensor 1")
+# max_vs_22 = df.where(df.Status == "Abnormal").select(max("Vibration_sensor_2")).withColumnRenamed("max(Vibration_sensor_2)","max of Vibration sensor 2")
+# max_vs_32 = df.where(df.Status == "Abnormal").select(max("Vibration_sensor_3")).withColumnRenamed("max(Vibration_sensor_3)","max of Vibration sensor 3")
+# max_vs_42 = df.where(df.Status == "Abnormal").select(max("Vibration_sensor_4")).withColumnRenamed("max(Vibration_sensor_4)","max of Vibration sensor 4")
+
+# print("Vibration sensors maximum values (Abnormal)")
+# max_vs_12.join(max_vs_22).join(max_vs_32).join(max_vs_42).show(vertical = True)
+
+
+# min_vs_12 = df.where(df.Status == "Abnormal").select(min("Vibration_sensor_1")).withColumnRenamed("min(Vibration_sensor_1)","minimum of Vibration range 1")
+# min_vs_22 = df.where(df.Status == "Abnormal").select(min("Vibration_sensor_2")).withColumnRenamed("min(Vibration_sensor_2)","minimum of Vibration range 2")
+# min_vs_32 = df.where(df.Status == "Abnormal").select(min("Vibration_sensor_3")).withColumnRenamed("min(Vibration_sensor_3)","minimum of Vibration range 3")
+# min_vs_42 = df.where(df.Status == "Abnormal").select(min("Vibration_sensor_4")).withColumnRenamed("min(Vibration_sensor_4)","minimum of Vibration range 4")
+# print("Vibration sensors minimum values (Abnormal)")
+# min_vs_12.join(min_vs_22).join(min_vs_32).join(min_vs_42).show(vertical = True)
+
+# #The mean of vibration sensors  (Abnormal)
+# average_vs_12 = df.filter(df.Status == "Abnormal").select(mean("Vibration_sensor_1")).withColumnRenamed("avg(Vibration_sensor_1)","average Vibration sensor 1")
+# average_vs_22 = df.filter(df.Status == "Abnormal").select(mean("Vibration_sensor_2")).withColumnRenamed("avg(Vibration_sensor_2)","average Vibration sensor 2")
+# average_vs_32 = df.filter(df.Status == "Abnormal").select(mean("Vibration_sensor_3")).withColumnRenamed("avg(Vibration_sensor_3)","average Vibration sensor 3")
+# average_vs_42 = df.filter(df.Status == "Abnormal").select(mean("Vibration_sensor_4")).withColumnRenamed("avg(Vibration_sensor_4)","average Vibration sensor 4")
+# print("The mean of vibration sensors (Abnormal)")
+# average_vs_12.join(average_vs_22).join(average_vs_32).join(average_vs_42).show(vertical = True)
+
+
+
+
+
+
+
+
