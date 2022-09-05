@@ -1,0 +1,3 @@
+# nuclear_plants_big_dataset
+this project includes two main sections Section I: Data Summary, Understanding and Visualisation Section II: Classification & Big data analysis
+It is a dataset of pressurised water reactors (a type of nuclear reactors) with various measurements in different parts of the reactor, including vibration, pressure and power levels. The first column in the spreadsheet indicates the status of the reactor, i.e. ‘normal’ or ‘abnormal’. All the other columns are features which could help us to gain insights into the status of each reactor. You are asked to provide an analysis over this data to discuss if these features could be potentially used to predict whether a reactor is normal or abnormal.
